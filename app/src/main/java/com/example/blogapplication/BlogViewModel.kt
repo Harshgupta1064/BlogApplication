@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class BlogViewModel : ViewModel() {
+class BlogViewModel(private val blogRepository: BlogRepository) : ViewModel() {
 
     // LiveData to handle loading state
     private val _isLoading = MutableLiveData<Boolean>()
@@ -15,9 +15,6 @@ class BlogViewModel : ViewModel() {
     // LiveData to handle error messages
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
-    // Repository to fetch blog posts
-    private val blogRepository = BlogRepository()
-
     // Private MutableLiveData to hold the blog posts
     private val _blogPosts = MutableLiveData<List<Blog>>()
 

@@ -20,14 +20,15 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Use 'viewModels()' to initialize the ViewModel
-        val blogViewModel: BlogViewModel by viewModels()
-
+        val blogRepository = BlogRepository()
+        val blogViewModel = BlogViewModel(blogRepository)
         // Fetch blogs from ViewModel
         blogViewModel.fetchBlogs()
 
